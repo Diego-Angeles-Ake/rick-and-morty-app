@@ -1,0 +1,23 @@
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5vmin;
+  height: 10vmin;
+}
+.btn {
+  height: 56px;
+  border-radius: 0 10px 10px 0;
+  border: 0;
+}
+.bg-img {
+  background: url('../../assets/bgimg.jpg');
+  /* Control the height of the image */
+  min-height: 30vmin;
+  width: 100vw;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}

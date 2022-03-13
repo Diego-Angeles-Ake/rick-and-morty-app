@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 10vmin;
+}
+
+h3 {
+  margin: 0 1vmin;
+  text-transform: capitalize;
+}
+
+.des {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #062226;
+  padding: 10vmin;
+}
