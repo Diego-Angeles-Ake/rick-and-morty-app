@@ -10,7 +10,6 @@ export default function ResidentInfo({ resident }) {
 
   if (status === 'loading') return <p>Loading...</p>;
   if (status === 'error') return <p>Error :(</p>;
-  console.log(data.data.image);
   return (
     <div className={styles.resFlex}>
       <img src={data.data.image} alt='' />
