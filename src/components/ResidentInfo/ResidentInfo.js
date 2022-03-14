@@ -1,40 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useQuery } from 'react-query';
 import axios from 'axios';
 import styles from './ResidentInfo.module.css';
 
 export default function ResidentInfo({ resident }) {
-  const [name, setName] = useState('');
-  const [species, setSpecies] = useState('');
-  const [origin, setOrigin] = useState('');
-  const [episodes, setEpisodes] = useState('');
-  const [status, setStatus] = useState('');
-  const [img, setImg] = useState('');
+  const { status, data } = useQuery(`test${resident}`, () =>
+    axios.get(resident)
+  );
 
-  useEffect(() => {
-    axios.get(resident).then((res) => {
-      console.log(res.data);
-      setName(res.data.name);
-      setSpecies(res.data.species);
-      setOrigin(res.data.origin.name);
-      setEpisodes(res.data.episode.length);
-      setStatus(res.data.status);
-      setImg(res.data.image);
-    });
-  }, []);
-
-  console.dir(resident);
+  if (status === 'loading') return <p>Loading...</p>;
+  if (status === 'error') return <p>Error :(</p>;
+  console.log(data.data.image);
   return (
     <div className={styles.resFlex}>
-      <img src={img} alt='' />
+      <img src={data.data.image} alt='' />
       <div>
-        <h3>{name}</h3>
+        <h3>{data.data.name}</h3>
         <hr />
         <h4>Species</h4>
-        <h5>{species}</h5>
+        <h5>{data.data.species}</h5>
         <h4>Origin</h4>
-        <h5>{origin}</h5>
+        <h5>{data.data.origin.name}</h5>
         <h4>Espisodes</h4>
-        <h5>{episodes}</h5>
+        <h5>{data.data.episode.length}</h5>
+        <h4>Status</h4>
+        <h5>{data.data.status}</h5>
       </div>
     </div>
   );

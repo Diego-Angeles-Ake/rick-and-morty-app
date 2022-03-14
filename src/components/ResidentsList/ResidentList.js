@@ -6,7 +6,7 @@ export default function ResidentList({ residentList }) {
   return (
     <div className={styles.flex}>
       {residentList.map((resident, index) => {
-        // return <ResidentInfo key={index} resident={resident}></ResidentInfo>;
+        return <ResidentInfo key={index} resident={resident}></ResidentInfo>;
       })}
     </div>
   );

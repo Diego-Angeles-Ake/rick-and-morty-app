@@ -3,12 +3,15 @@ import SearchBar from './components/SearchBar/SearchBar';
 import LocationInfo from './components/LocationInfo/LocationInfo';
 import ResidentList from './components/ResidentsList/ResidentList';
 import rN from './utils/randomNumber';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import axios from 'axios';
 import './App.css';
+
+const queryClient = new QueryClient();
+
 function App() {
   const [locationData, setLocationData] = useState({});
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const random = rN(1, 126);
     axios
@@ -18,17 +21,19 @@ function App() {
         setLoading(false);
       });
   }, []);
-  // console.log(locationData);
+
   return (
-    <div className='App'>
-      {!loading && (
-        <div>
-          <SearchBar onSetLocationData={setLocationData} />
-          <LocationInfo locationData={locationData} />
-          <ResidentList residentList={locationData.residents} />
-        </div>
-      )}
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div className='App'>
+        {!loading && (
+          <div>
+            <SearchBar onSetLocationData={setLocationData} />
+            <LocationInfo locationData={locationData} />
+            <ResidentList residentList={locationData.residents} />
+          </div>
+        )}
+      </div>
+    </QueryClientProvider>
   );
 }
 
