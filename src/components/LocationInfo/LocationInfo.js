@@ -13,7 +13,7 @@ export default function LocationInfo({ locationData }) {
           </div>
           <div className={styles['container']}>
             <h2>Dimension:</h2>
-            <h3>{locationData.dimension}</h3>
+            <h3>{locationData.dimension || 'Unknown'}</h3>
           </div>
           <div className={styles['container']}>
             <h2>Population:</h2>
